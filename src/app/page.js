@@ -22,9 +22,8 @@ export default function RandomUserPage() {
 
   useEffect(() => {
     const strGenAmount = localStorage.getItem("genAmount");
-    if (genAmount == null || genAmount == "") {
+    if (genAmount === null) {
       setGenAmount(0);
-      localStorage.setItem("genAmount", 0);
     }
     setGenAmount(strGenAmount);
   });
@@ -36,8 +35,11 @@ export default function RandomUserPage() {
     );
     setIsLoading(false);
     const users = resp.data.results;
-    const cleanedUsers = users.map(cleanUser);
-    setUsers(cleanedUsers);
+    const cleanUsers = users.map(cleanUser);
+    setUsers(cleanUsers);
+    //Your code here
+    //Process result from api response with map function. Tips use function from /src/libs/cleanUser
+    //Then update state with function : setUsers(...)
   };
 
   return (
@@ -68,7 +70,9 @@ export default function RandomUserPage() {
             imgUrl={user.imgUrl}
             address={user.address}
             email={user.email}
-          />
+          ></UserCard>
+
+          /*code map rendering UserCard here */
         ))}
     </div>
   );
